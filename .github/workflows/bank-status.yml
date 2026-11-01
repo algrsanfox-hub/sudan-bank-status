@@ -1,37 +1,34 @@
 name: Sudan Bank Status
 
 'on':
-schedule:
-- cron: '0 */2 * * *'
-workflow_dispatch:
-
-permissions:
-contents: read
+  workflow_dispatch:
+  schedule:
+    - cron: "0 */2 * * *"
 
 jobs:
-update:
-runs-on: ubuntu-latest
-steps:
-- name: Download repository
-uses: actions/checkout@v4
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
 
-  - name: Setup Python
-    uses: actions/setup-python@v5
-    with:
-      python-version: '3.12'
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
 
-  - name: Decode Python file
-    run: base64 -d bank_status.txt > bank_status.py
+      - name: Decode bot file
+        run: base64 -d bank_status.txt > bank_status.py
 
-  - name: Install Arabic fonts
-    run: |
-      sudo apt-get update
-      sudo apt-get install -y fonts-noto-core fonts-dejavu-core
+      - name: Install fonts
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y fonts-noto-core fonts-dejavu-core
 
-  - name: Install requirements
-    run: pip install -r requirements.txt
+      - name: Install requirements
+        run: pip install -r requirements.txt
 
-  - name: Run bot
-    run: python bank_status.py
-    env:
-      BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
+      - name: Run bot
+        run: python bank_status.py
+        env:
+          BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
