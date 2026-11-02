@@ -7,6 +7,7 @@ name: Sudan Bank Status
 
 permissions:
   contents: read
+
 jobs:
   update:
     name: Update Bank Status
