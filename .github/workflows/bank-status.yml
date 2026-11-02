@@ -4,9 +4,9 @@ name: Sudan Bank Status
   workflow_dispatch:
   schedule:
     - cron: "0 */2 * * *"
+
 permissions:
   contents: read
-
 jobs:
   update:
     name: Update Bank Status
