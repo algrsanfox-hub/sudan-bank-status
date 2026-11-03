@@ -1,9 +1,6 @@
 name: Sudan Bank Status
 
-on:
-  workflow_dispatch:
-  schedule:
-    - cron: "0 */2 * * *"
+on
 
 permissions:
   contents: read
